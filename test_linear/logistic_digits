@@ -1,0 +1,39 @@
+import pandas as pd
+import numpy as np
+import sys
+sys.path.append("./venv/lib/python3.10/site-packages")
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_digits
+import random
+
+
+digits = load_digits()
+digits.data
+plt.gray()
+# plt.matshow(digits.images[0])
+# digits.target[0]
+digits.keys()
+
+
+X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target, test_size=0.2)
+reg = LogisticRegression()
+reg.fit(X_train, y_train)
+reg.score(X_test, y_test)
+
+
+rand_index = random.randint(0, len(digits.images)-1)
+model_prediction = reg.predict([digits.data[rand_index]])
+target = digits.target[rand_index]
+while (model_prediction == target):
+    rand_index = random.randint(0, len(digits.images)-1)
+    rand_img = digits.images[rand_index]
+    target = digits.target[rand_index]
+    model_prediction = reg.predict([digits.data[rand_index]])
+    
+print(model_prediction == target)
+plt.matshow(rand_img)
+print(target)
+print(model_prediction)
