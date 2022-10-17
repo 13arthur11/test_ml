@@ -1,0 +1,9 @@
+import pandas as pd
+import numpy as np
+import sys
+sys.path.append("./venv/lib/python3.10/site-packages")
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_digits
